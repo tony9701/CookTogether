@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: CookTogether
+  #  thymeleaf:
+  #    check-template-location: true
+  #    cache: false
+  #    prefix: file:./src/main/resources/templates/
+  server:
+    port: 8080
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cook_together?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: ""
+    password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: never
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
