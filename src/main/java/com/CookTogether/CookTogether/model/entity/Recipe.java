@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Recipe extends BaseEntity {
     private String description;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Photo> pictures;
+    private List<Photo> pictures = new ArrayList<>();
 
     private String ingredients;
 
@@ -31,10 +32,12 @@ public class Recipe extends BaseEntity {
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Category> categories;
+    private List<Category> categories = new ArrayList<>();
 
+    @Column(name = "cooking_time_in_minutes")
     private int  cookingTimeInMinutes;
 
+    @Column(name = "preparation_time_in_minutes")
     private int  preparationTimeInMinutes;
 
     private DifficultyEnum difficulty;
@@ -42,8 +45,8 @@ public class Recipe extends BaseEntity {
     private int portions;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Rating> ratings;
+    private List<Rating> ratings = new ArrayList<>();
 }
